@@ -1,0 +1,8 @@
+ruff
+black
+isort
+pytest
+logging
+pytest-mock
+anyio
+pytest-asyncio
