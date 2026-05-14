@@ -17,3 +17,5 @@ python-jose[cryptography]
 httpx
 aiofiles
 b2sdk
+redis
+redis[hiredis]
