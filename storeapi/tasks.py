@@ -4,7 +4,7 @@ from json import JSONDecodeError
 import httpx
 from databases import Database
 
-from config import config
+from config.config import config
 from database import post_table
 
 logger = logging.getLogger(__name__)
