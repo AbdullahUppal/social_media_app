@@ -3,9 +3,8 @@ from enum import Enum
 from typing import Annotated
 
 import sqlalchemy
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
-
 from database import comment_table, database, like_table, post_table
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
 from models.post import (
     Comment,
     CommentIn,
@@ -37,7 +36,7 @@ select_post_and_like = (
 
 
 async def find_post(post_id: int):
-    logger.info(f"Finding post  with id{post_id}")
+    logger.info(f"Finding post with id{post_id}")
 
     query = post_table.select().where(post_table.c.id == post_id)
 
