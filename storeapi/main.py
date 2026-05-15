@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     configure_logging()  # making sure the log is configured before the app starts
     logger.info("Hello World")
-    Cache.configure_cache()
+    Cache.__init__()
     await database.connect()  # run this when app is ready to run
     yield  # wait
     Cache.close_cache()
@@ -31,6 +31,7 @@ app = FastAPI(
     lifespan=lifespan
 )  # lifespan is used to run some code when the app is ready to run and when it is shutting down
 app.add_middleware(CorrelationIdMiddleware)  # add the middleware to the app
+# app.add_middleware()
 
 app.include_router(posts_router)
 app.include_router(upload_router)
@@ -42,6 +43,7 @@ async def http_exception_handle_longing(request, exc):
     logger.error(f"HTTPException: {exc.status_code} {exc.detail}")
     return await http_exception_handler(request, exc)
 
+# @app.
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
